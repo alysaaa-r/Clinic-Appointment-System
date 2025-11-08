@@ -1,0 +1,46 @@
+﻿<!-- Views/Account/Register.cshtml -->
+@model ClinicAppointmentSystem.ViewModels.RegisterViewModel
+@{
+    Layout = "_Layout";
+}
+<div class="card shadow-sm">
+    <div class="card-header bg-white">
+        <h5 class="mb-0">Create an account</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Register" method="post" class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">First name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Last name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Register as</label>
+                <select asp-for="Role" class="form-select">
+                    <option>User</option>
+                    <option>Admin</option>
+                </select>
+                <span class="form-text">Main admin will review your registration.</span>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary">Register</button>
+                <a asp-action="Login" class="btn btn-link">Back to login</a>
+            </div>
+        </form>
+    </div>
+</div>

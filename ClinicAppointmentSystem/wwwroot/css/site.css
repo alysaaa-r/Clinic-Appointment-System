@@ -1,0 +1,25 @@
+/* wwwroot/css/site.css */
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+}
+
+.card {
+    border: 1px solid #e5e7eb;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.table thead th {
+    background: #f8fafc;
+}
+
+.btn {
+    border-radius: 6px;
+}

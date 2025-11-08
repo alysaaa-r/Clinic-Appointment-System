@@ -1,0 +1,71 @@
+﻿<!-- Views/AdminDashboard/Index.cshtml -->
+@{
+    Layout = "_Layout";
+    var pendingUsers = (IEnumerable<ClinicAppointmentSystem.Models.User>)ViewBag.PendingUsers;
+    var pendingAdmins = (IEnumerable<ClinicAppointmentSystem.Models.Admin>)ViewBag.PendingAdmins;
+    var upcoming = (IEnumerable<ClinicAppointmentSystem.Models.Appointment>)ViewBag.UpcomingAppointments;
+}
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-white"><strong>Pending Users</strong></div>
+            <ul class="list-group list-group-flush">
+                @foreach (var u in pendingUsers)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>@u.FirstName @u.LastName (@u.Email)</span>
+                        <span>
+                            <a class="btn btn-sm btn-success" asp-action="ApproveUser" asp-route-id="@u.Id">Approve</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="RejectUser" asp-route-id="@u.Id">Reject</a>
+                        </span>
+                    </li>
+                }
+                @if (!pendingUsers.Any())
+                {
+                    <li class="list-group-item">None</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-white"><strong>Pending Admins</strong></div>
+            <ul class="list-group list-group-flush">
+                @foreach (var a in pendingAdmins)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>@a.FirstName @a.LastName (@a.Email)</span>
+                        <span>
+                            <a class="btn btn-sm btn-success" asp-action="ApproveAdmin" asp-route-id="@a.Id">Approve</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="RejectAdmin" asp-route-id="@a.Id">Reject</a>
+                        </span>
+                    </li>
+                }
+                @if (!pendingAdmins.Any())
+                {
+                    <li class="list-group-item">None</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-white"><strong>Upcoming Appointments</strong></div>
+            <ul class="list-group list-group-flush">
+                @foreach (var ap in upcoming)
+                {
+                    <li class="list-group-item">
+                        @ap.ScheduledAt.ToString("yyyy-MM-dd HH:mm") — @ap.Patient.FullName — @ap.Department
+                        <div class="mt-2">
+                            <a class="btn btn-sm btn-outline-primary" asp-action="AppointmentDetails" asp-route-id="@ap.Id">Details</a>
+                        </div>
+                    </li>
+                }
+                @if (!upcoming.Any())
+                {
+                    <li class="list-group-item">None</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
